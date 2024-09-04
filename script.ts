@@ -80,5 +80,5 @@ allowing push to add elements breaks the intended fixed-length constraint.This l
 arrays under the hood in JavaScript. TypeScript allows the push method, which isn't type-checked for fixed-length in tuples, 
 to add elements beyond the specified length. */
 
-//Type Inference
+
  
