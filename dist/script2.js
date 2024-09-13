@@ -16,4 +16,19 @@ const staff = {
     employeeId: 123,
     department: "IT"
 };
-
+let z;
+let p = {
+    name: "Anjali",
+    id: 43
+};
+let enroll = 12;
+const Megha = {
+    age: 10,
+    name: "Megha",
+    address: "123 Main Street"
+};
+const MergedContent = {
+    name: "Malini",
+    id: 1
+};
+/*Types cannot be merged. If you declare the same type name multiple times, you'll get a compilation error. */

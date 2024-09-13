@@ -31,3 +31,90 @@ const staff: StaffMember = {
     employeeId: 123,
     department: "IT"
 }
+
+//Type Aliases
+/* Two types of Aliases
+Primitive type aliases
+Object type aliases */
+
+//Primitive type aliases
+type Name = string;
+let z: Name ;
+
+//Object type aliases
+type Human = {
+    name : string;
+    id : number;
+}
+
+let p: Human = {
+    name : "Anjali",
+    id : 43
+};
+
+//Union type aliases 
+type Enrollment = string | number;
+let enroll: Enrollment = 12;
+
+//Intersection type aliases(Use & operator)
+type StudentAge = {age: 10};
+type StudentName = {name: string};
+type StudentAddress = {address: string};
+
+type Student = StudentAge & StudentName & StudentAddress;
+
+const Megha : Student = {
+    age: 10,
+    name: "Megha",
+    address: "123 Main Street"
+}
+
+//Difference between types and aliases
+
+/*Basic syntax*/
+//Interfaces
+interface Person2 {
+    name: string;
+    age: number;
+  }
+// Aliases
+type Person3 = {
+    name : string;
+    age: number;
+}
+
+/*Extending*/
+
+//Interface
+interface Person1 {
+    employeeName: string;
+}
+
+interface Person2 extends Person1 {
+    employeeId: number;
+}
+
+//Aliases
+type Model1  = {
+    name : string;
+    id: 2;
+}
+
+type ModelName = Model1 & {
+    name: "Shrimati",
+    id: 8;
+}
+
+/*Merging */
+interface Merge1 {
+    name: string;
+}
+interface Merge1 {
+    id: number;
+}
+const MergedContent : Merge1 = {
+    name: "Malini",
+    id: 1
+}
+
+/*Types cannot be merged. If you declare the same type name multiple times, you'll get a compilation error. */
