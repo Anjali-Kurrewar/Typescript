@@ -1,177 +1,135 @@
+"use strict";
 class Person4 {
-    name: string;
-    age: number;
-  
     // Constructor to initialize the object
-    constructor(name: string, age: number) {
-      this.name = name;
-      this.age = age;
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
     }
-  
     // Method to display the person's information
     displayInfo() {
-      console.log(`Name: ${this.name}, Age: ${this.age}`);
+        console.log(`Name: ${this.name}, Age: ${this.age}`);
     }
-  }
-  
-  // Creating a new instance of the Person class
-  const person4 = new Person4("Alice", 25);
-  person4.displayInfo(); // Output: Name: Alice, Age: 25
-
+}
+// Creating a new instance of the Person class
+const person4 = new Person4("Alice", 25);
+person4.displayInfo(); // Output: Name: Alice, Age: 25
 /*  Constructor Overloading (with Optional Parameters):
 TypeScript allows constructors to handle optional parameters by using default values or ? for optional types.*/
 class Employee1 {
-    name: string;
-    department: string;
-  
-    constructor(name: string, department: string = "General") {
-      this.name = name;
-      this.department = department;
+    constructor(name, department = "General") {
+        this.name = name;
+        this.department = department;
     }
-  
     displayEmployeeInfo() {
-      console.log(`${this.name} works in ${this.department} department`);
+        console.log(`${this.name} works in ${this.department} department`);
     }
-  }
-  
-  const employee1 = new Employee1("Bob");
-  const employee2 = new Employee1("Eve", "IT");
-  
-  employee1.displayEmployeeInfo(); // Output: Bob works in General department
-  employee2.displayEmployeeInfo(); // Output: Eve works in IT department
-  
-  // Access modifiers
-  /*TypeScript has four access modifiers: public, private, protected, and readonly.
-  By default, properties and methods are public.
-  Public properties and methods can be accessed from outside the class.
-  Private properties and methods can only be accessed within the class.
-  Protected properties and methods can be accessed within the class and its subclasses.
-  Readonly properties cannot be reassigned after they are initialized. */
-
-  /*Public */
-  class Animal {
-    public name: string;
-  
-    constructor(name: string) {
-      this.name = name;
+}
+const employee1 = new Employee1("Bob");
+const employee2 = new Employee1("Eve", "IT");
+employee1.displayEmployeeInfo(); // Output: Bob works in General department
+employee2.displayEmployeeInfo(); // Output: Eve works in IT department
+// Access modifiers
+/*TypeScript has four access modifiers: public, private, protected, and readonly.
+By default, properties and methods are public.
+Public properties and methods can be accessed from outside the class.
+Private properties and methods can only be accessed within the class.
+Protected properties and methods can be accessed within the class and its subclasses.
+Readonly properties cannot be reassigned after they are initialized. */
+/*Public */
+class Animal {
+    constructor(name) {
+        this.name = name;
     }
-  
-    public makeSound() {
-      console.log(`${this.name} makes a sound.`);
+    makeSound() {
+        console.log(`${this.name} makes a sound.`);
     }
-  }
-  
-  const dog = new Animal("Dog");
-  console.log(dog.name); // Accessible: Output -> Dog
-  dog.makeSound();       // Accessible: Output -> Dog makes a sound.
-
-  /*Private */
-  class Person5 {
-    private age: number;
-  
-    constructor(age: number) {
-      this.age = age;
+}
+const dog = new Animal("Dog");
+console.log(dog.name); // Accessible: Output -> Dog
+dog.makeSound(); // Accessible: Output -> Dog makes a sound.
+/*Private */
+class Person5 {
+    constructor(age) {
+        this.age = age;
     }
-  
-    public showAge() {
-      console.log(`Age is: ${this.age}`);
+    showAge() {
+        console.log(`Age is: ${this.age}`);
     }
-  }
-  
-  const person5 = new Person5(30);
-  person5.showAge(); // Accessible through a public method: Output -> Age is: 30
-  // console.log(person.age); // Error: Property 'age' is private and only accessible within class 'Person'.
-
-  /*Protected */
-  class Employee6 {
-    protected employeeId: number;
-  
-    constructor(employeeId: number) {
-      this.employeeId = employeeId;
+}
+const person5 = new Person5(30);
+person5.showAge(); // Accessible through a public method: Output -> Age is: 30
+// console.log(person.age); // Error: Property 'age' is private and only accessible within class 'Person'.
+/*Protected */
+class Employee6 {
+    constructor(employeeId) {
+        this.employeeId = employeeId;
     }
-  }
-  
-  class Manager extends Employee6 {
-    constructor(employeeId: number) {
-      super(employeeId);
+}
+class Manager extends Employee6 {
+    constructor(employeeId) {
+        super(employeeId);
     }
-  
-    public showEmployeeId() {
-      console.log(`Employee ID: ${this.employeeId}`);
+    showEmployeeId() {
+        console.log(`Employee ID: ${this.employeeId}`);
     }
-  }
-  
-  const manager = new Manager(101);
-  manager.showEmployeeId(); // Output -> Employee ID: 101
-  // console.log(manager.employeeId); // Error: Property 'employeeId' is protected and only accessible within class 'Employee' and its subclasses.
-  
-  /*Readonly Properties*/
-  class Car {
-    readonly brand: string;
-  
-    constructor(brand: string) {
-      this.brand = brand; // Can be assigned in the constructor
+}
+const manager = new Manager(101);
+manager.showEmployeeId(); // Output -> Employee ID: 101
+// console.log(manager.employeeId); // Error: Property 'employeeId' is protected and only accessible within class 'Employee' and its subclasses.
+/*Readonly Properties*/
+class Car {
+    constructor(brand) {
+        this.brand = brand; // Can be assigned in the constructor
     }
-  
     showBrand() {
-      console.log(`Car brand: ${this.brand}`);
+        console.log(`Car brand: ${this.brand}`);
     }
-  }
-  
-  const car = new Car("Toyota");
-  console.log(car.brand); // Output: Toyota
-  // car.brand = "Honda"; // Error: Cannot assign to 'brand' because it is a read-only property.
-
-  /*Setter and Getter */
-  class Employee7 {
-    private _fullName: string = "";
-  
+}
+const car = new Car("Toyota");
+console.log(car.brand); // Output: Toyota
+// car.brand = "Honda"; // Error: Cannot assign to 'brand' because it is a read-only property.
+/*Setter and Getter */
+class Employee7 {
+    constructor() {
+        this._fullName = "";
+    }
     // Getter: Retrieve the property value
-    get fullName(): string {
-      return this._fullName;
+    get fullName() {
+        return this._fullName;
     }
-  
     // Setter: Validate and set the property value
-    set fullName(newName: string) {
-      if (newName.length > 0) {
-        this._fullName = newName;
-      } else {
-        console.log("Error: Name cannot be empty.");
-      }
+    set fullName(newName) {
+        if (newName.length > 0) {
+            this._fullName = newName;
+        }
+        else {
+            console.log("Error: Name cannot be empty.");
+        }
     }
-  }
-  
-  const emp = new Employee7();
-  emp.fullName = "John Doe"; // Calls the setter
-  console.log(emp.fullName); // Calls the getter -> Output: John Doe
-  
-  emp.fullName = ""; // Output: Error: Name cannot be empty.
-  
-  /*Fuction Types*/
-  function add1(a: number, b: number): number {
+}
+const emp = new Employee7();
+emp.fullName = "John Doe"; // Calls the setter
+console.log(emp.fullName); // Calls the getter -> Output: John Doe
+emp.fullName = ""; // Output: Error: Name cannot be empty.
+/*Fuction Types*/
+function add(a, b) {
     return a + b;
-  }
-  
-  const result = add(5, 10);
-  console.log(result); // Output: 15
-
-  /*Optional Parameters*/
-  function greet(name: string, greeting?: string): string {
+}
+const result = add(5, 10);
+console.log(result); // Output: 15
+/*Optional Parameters*/
+function greet(name, greeting) {
     return greeting ? `${greeting}, ${name}` : `Hello, ${name}`;
-  }
-  
-  console.log(greet("Alice")); // Output: Hello, Alice
-  console.log(greet("Bob", "Good morning")); // Output: Good morning, Bob
-  
-  /*Default Parameters*/
-  function greetUser(name: string, greeting: string = "Hello"): string {
+}
+console.log(greet("Alice")); // Output: Hello, Alice
+console.log(greet("Bob", "Good morning")); // Output: Good morning, Bob
+/*Default Parameters*/
+function greetUser(name, greeting = "Hello") {
     return `${greeting}, ${name}`;
-  }
-  
-  console.log(greetUser("Alice")); // Output: Hello, Alice
-  console.log(greetUser("Bob", "Hi")); // Output: Hi, Bob
-  
-  /*In TypeScript, modules are used to organize and reuse code. Modules allow you to export variables, functions, classes, interfaces, etc., from one file and import them into another. TypeScript uses ES6 module syntax, and it allows you to manage dependencies between files in a clear and structured way.
+}
+console.log(greetUser("Alice")); // Output: Hello, Alice
+console.log(greetUser("Bob", "Hi")); // Output: Hi, Bob
+/*In TypeScript, modules are used to organize and reuse code. Modules allow you to export variables, functions, classes, interfaces, etc., from one file and import them into another. TypeScript uses ES6 module syntax, and it allows you to manage dependencies between files in a clear and structured way.
 
 ### 1. **Exporting in TypeScript**
 
@@ -188,13 +146,13 @@ With named exports, you explicitly export each item with the `export` keyword. T
 export const PI = 3.14;
 
 export function add(a: number, b: number): number {
-  return a + b;
+return a + b;
 }
 
 export class Calculator {
-  subtract(a: number, b: number): number {
-    return a - b;
-  }
+subtract(a: number, b: number): number {
+  return a - b;
+}
 }
 ```
 
@@ -216,10 +174,10 @@ console.log(calc.subtract(10, 5)); // Output: 5
 
 - You must use the same names as the exported ones (`PI`, `add`, `Calculator`).
 - If you want to rename a named export during import, you can use the `as` keyword:
-  ```typescript
-  import { PI as CirclePI } from './mathUtils';
-  console.log(CirclePI); // Output: 3.14
-  ```
+```typescript
+import { PI as CirclePI } from './mathUtils';
+console.log(CirclePI); // Output: 3.14
+```
 
 #### **Default Exports**
 A module can have only one **default export**. The `export default` syntax is used when exporting the primary item from a module.
@@ -228,7 +186,7 @@ A module can have only one **default export**. The `export default` syntax is us
 ```typescript
 // file: logger.ts
 export default function log(message: string): void {
-  console.log(`Log: ${message}`);
+console.log(`Log: ${message}`);
 }
 ```
 
@@ -268,13 +226,13 @@ You can also use the `namespace` keyword to group related exports under a single
 ```typescript
 // file: shapes.ts
 export namespace Shapes {
-  export class Circle {
-    constructor(public radius: number) {}
-  }
+export class Circle {
+  constructor(public radius: number) {}
+}
 
-  export class Square {
-    constructor(public sideLength: number) {}
-  }
+export class Square {
+  constructor(public sideLength: number) {}
+}
 }
 ```
 
@@ -331,7 +289,7 @@ You can mix named exports with default exports in a single module.
 export const PI = 3.14;
 
 export default function multiply(a: number, b: number): number {
-  return a * b;
+return a * b;
 }
 ```
 
@@ -352,4 +310,4 @@ console.log(multiply(2, 5)); // Output: 10
 - **Importing Everything**: Use `* as alias` to import all exports as a single object.
 - **Side-effect Imports**: Import a module for its side effects without importing specific values.
 
-By managing code with modules in TypeScript, you can structure and organize your codebase more effectively and promote code reuse across files and projects.*/
+By managing code with modules in TypeScript, you can structure and organize your codebase more effectively and promote code reuse across files and projects.*/ 
